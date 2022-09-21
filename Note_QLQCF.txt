@@ -1,0 +1,20 @@
+Bài tập lớn môn Lập Trình Java CT276 - Thầy Nghi
+------------Quản lý quán cà phê ----------- 21/09/2022
+1. Tạo csdl my sql server
+2. Tạo project QL_Quan_Ca_Phe
+3. project file -> pom.xml khai báo để kết nối với csdl
+	<dependencies>
+        	<dependency>
+            		 <groupId>com.microsoft.sqlserver</groupId>
+             		<artifactId>mssql-jdbc</artifactId>
+             		<version>11.2.0.jre18</version>
+       		 </dependency>
+    	</dependencies>
+4. C:\Netbeans_13\QL_Quan_Ca_Phe
+	src -> main -> Tạo "resesrces" (lưu các tài nguyên của dự án maven)
+		tạo packet "icon" dán các hình ảnh dùng làm icon vào
+			paste "icon" vào thư mục "resources"
+5. Tạo form đăng nhập JDiaLog form
+	+ Xử lý btn_thoat
+		System.exit(0);
+6. 
