@@ -4,6 +4,14 @@
  */
 package ui;
 
+import dao.NguoiDungDAO;
+import helpers.ChiaSeDuLieu;
+import helpers.KiemTraDuLieuNhapVao;
+import helpers.ThongBao;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import model.NguoiDung;
+
 /**
  *
  * @author admin
@@ -146,10 +154,72 @@ public class DangNhap_Dialog extends javax.swing.JDialog {
     private void txt_matKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_matKhauActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_matKhauActionPerformed
-
+    /*
+        Ngày 22/09/2022 Xử lý đăng nhập khi đúng password và tài khoản
+        Tránh tạo nhiều đối tượng JFrame
+        Lưu lại dữ liệu của đối tượng củ
+     */
+    public GiaoDienChinh_JFrame gdc;
     private void btn_dangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dangNhapActionPerformed
-        // TODO add your handling code here:
+
+        // Kiểm tra nhập liệu
+        StringBuilder sb = new StringBuilder();
+        // Kiêm tra tài khoản rỗng ?
+        KiemTraDuLieuNhapVao.KiemTraRong(txt_tenDangNhap, sb, "Tên đăng nhập không được để trống");
+        KiemTraDuLieuNhapVao.KiemTraMatKhauRong(txt_matKhau, sb, "Mật khẩu không được để trống");
+
+        // Kiểm tra kích thước đối tương sb 
+        if (sb.length() > 0) { // Có thông báo trong đối tương sb
+            ThongBao.ThongBaoLoi(this, sb.toString(), "Lỗi");
+            return; // Kết thúc phương thức ThongBaoLoi()
+        }
+
+        // Khai báo đối tượng NguoiDung + NguoiDungDAO
+        NguoiDungDAO ndDao = new NguoiDungDAO();
+        try {
+            NguoiDung nd = ndDao.KiemTraDangNhap(txt_tenDangNhap.getText(), new String(txt_matKhau.getPassword()));
+            if (nd == null) {
+                ThongBao.ThongBaoLoi(this, "Sai tên đăng nhập hoặc mật khẩu", "Lỗi");
+            } else { // Đăng nhập thành công -> đóng lại
+                ChiaSeDuLieu.nguoiDangNhap = nd;
+                //this.dispose();
+                
+                if (gdc == null) {
+                    gdc = new GiaoDienChinh_JFrame();
+                }
+                this.dispose();
+                gdc.setVisible(true);
+                gdc.dangnhap=this;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            ThongBao.ThongBaoLoi(this, e.getMessage(), "Lỗi ngoại lệ");
+        }
+
+//        if (txt_tenDangNhap.getText().equals("admin") && txt_matKhau.getText().equals("123")) {
+//
+//            if (gdc == null) {
+//                gdc = new GiaoDienChinh_JFrame();
+//            }
+//                this.dispose();
+//                gdc.setVisible(true);
+//                gdc.dangnhap=this;
+//        }else{
+//            JOptionPane.showMessageDialog(this, "Sai tên đăng nhập hoặc mật khẩu", "Thông báo", JOptionPane.WARNING_MESSAGE);
+//        }
+
     }//GEN-LAST:event_btn_dangNhapActionPerformed
+    /*
+        Ngày 22/09/2022 tạo ham get set của txt_matKhau để xóa mật khẩu khi đăng xuất 
+     */
+
+    public JPasswordField getTxt_matKhau() {
+        return txt_matKhau;
+    }
+
+    public void setTxt_matKhau(JPasswordField txt_matKhau) {
+        this.txt_matKhau = txt_matKhau;
+    }
 
     private void btn_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thoatActionPerformed
         System.exit(0);
