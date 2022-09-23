@@ -46,6 +46,7 @@ public class DangNhap_Dialog extends javax.swing.JDialog {
         btn_thoat = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         txt_matKhau = new javax.swing.JPasswordField();
+        btn_them = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -78,6 +79,13 @@ public class DangNhap_Dialog extends javax.swing.JDialog {
             }
         });
 
+        btn_them.setText("Thêm");
+        btn_them.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_themActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -100,7 +108,9 @@ public class DangNhap_Dialog extends javax.swing.JDialog {
                             .addComponent(txt_tenDangNhap))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addComponent(btn_them)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_dangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addComponent(btn_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,7 +137,8 @@ public class DangNhap_Dialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_dangNhap)
-                    .addComponent(btn_thoat))
+                    .addComponent(btn_thoat)
+                    .addComponent(btn_them))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -181,7 +192,7 @@ public class DangNhap_Dialog extends javax.swing.JDialog {
             if (nd == null) {
                 ThongBao.ThongBaoLoi(this, "Sai tên đăng nhập hoặc mật khẩu", "Lỗi");
             } else { // Đăng nhập thành công -> đóng lại
-                ChiaSeDuLieu.nguoiDangNhap = nd;
+                ChiaSeDuLieu.nguoiDangNhap = nd; // Thể hiện có liên kết giữ form đằng nhập và giao diện chính
                 //this.dispose();
                 
                 if (gdc == null) {
@@ -224,6 +235,12 @@ public class DangNhap_Dialog extends javax.swing.JDialog {
     private void btn_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thoatActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btn_thoatActionPerformed
+
+    private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
+        NguoiDung nd = new NguoiDung(txt_tenDangNhap.getText(), new String(txt_matKhau.getPassword()));
+        
+        NguoiDungDAO.getInstance().Insert(nd);
+    }//GEN-LAST:event_btn_themActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,6 +286,7 @@ public class DangNhap_Dialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_dangNhap;
+    private javax.swing.JButton btn_them;
     private javax.swing.JButton btn_thoat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

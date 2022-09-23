@@ -9,12 +9,16 @@ package model;
     Lớp người dùng lưu thông tin của 1 người dùng
     + Tạo thuộc tính
     + Tạo constructor, get, set
-    +   
  */
 public class NguoiDung {
     private String tenDangNhap, matKhau, vaiTro, tenHienThi;
 
     public NguoiDung() {
+    }
+
+    public NguoiDung(String tenDangNhap, String matKhau) {
+        this.tenDangNhap = tenDangNhap;
+        this.matKhau = matKhau;
     }
 
     public NguoiDung(String tenDangNhap, String matKhau, String vaiTro, String tenHienThi) {

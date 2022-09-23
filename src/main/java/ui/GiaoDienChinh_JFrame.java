@@ -14,6 +14,7 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
 
     private QuanLyBan_JPanel btn_tool_quanLyBan;
     private QuanLyDoUong_JPanel btn_tool_quanLyDoUong;
+    private QuanLyNhanVien_JPanel btn_tool_quanLyNhanVien;
 
     /**
      * Creates new form GiaoDienChinh_JFrame
@@ -40,7 +41,7 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
         jSeparator7 = new javax.swing.JToolBar.Separator();
         btn_quanLyBan = new javax.swing.JButton();
         jSeparator8 = new javax.swing.JToolBar.Separator();
-        jButton4 = new javax.swing.JButton();
+        btn_quanLyNhanVien = new javax.swing.JButton();
         jSeparator9 = new javax.swing.JToolBar.Separator();
         btn_dangXuat = new javax.swing.JButton();
         tabp_giaoDienChinh = new javax.swing.JTabbedPane();
@@ -100,12 +101,17 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
         jToolBar1.add(btn_quanLyBan);
         jToolBar1.add(jSeparator8);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-user-50.png"))); // NOI18N
-        jButton4.setText("Quản lý nhân viên");
-        jButton4.setFocusable(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton4);
+        btn_quanLyNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-user-50.png"))); // NOI18N
+        btn_quanLyNhanVien.setText("Quản lý nhân viên");
+        btn_quanLyNhanVien.setFocusable(false);
+        btn_quanLyNhanVien.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_quanLyNhanVien.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_quanLyNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_quanLyNhanVienActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btn_quanLyNhanVien);
         jToolBar1.add(jSeparator9);
 
         btn_dangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logout-icon-48.png"))); // NOI18N
@@ -200,7 +206,7 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tabp_giaoDienChinh, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                .addComponent(tabp_giaoDienChinh, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -253,6 +259,16 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
         this.setVisible(false);
         dangnhap.setVisible(true);
     }//GEN-LAST:event_btn_dangXuatActionPerformed
+    /*
+        Ngày 23/09/2022 xư lý hiển thị QuanLyNhanVien_JPanel
+    */
+    private void btn_quanLyNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_quanLyNhanVienActionPerformed
+        if(btn_tool_quanLyNhanVien==null){
+            btn_tool_quanLyNhanVien = new QuanLyNhanVien_JPanel();
+            tabp_giaoDienChinh.addTab("Quản lý nhân viên", btn_tool_quanLyNhanVien);
+        }
+        tabp_giaoDienChinh.setSelectedComponent(btn_tool_quanLyNhanVien);
+    }//GEN-LAST:event_btn_quanLyNhanVienActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,8 +309,8 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
     private javax.swing.JButton btn_dangXuat;
     private javax.swing.JButton btn_quanLyBan;
     private javax.swing.JButton btn_quanLyDoUong;
+    private javax.swing.JButton btn_quanLyNhanVien;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
