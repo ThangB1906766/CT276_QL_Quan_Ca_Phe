@@ -8,12 +8,13 @@ package model;
     Ngày 23/09/2022 Tạo class nhân viên để lưu các thông tin nhân viên tron csdl
  */
 public class NhanVien {
-    private String idNhanVien, hoVaTen, email, soDienThoai, gioiTinh, diaChi;
+    private String idNhanVien, hoVaTen, email, soDienThoai, diaChi;
+    private int gioiTinh;
 
     public NhanVien() {
     }
 
-    public NhanVien(String idNhanVien, String hoVaTen, String email, String soDienThoai, String gioiTinh, String diaChi) {
+    public NhanVien(String idNhanVien, String hoVaTen, String email, String soDienThoai, int gioiTinh, String diaChi) {
         this.idNhanVien = idNhanVien;
         this.hoVaTen = hoVaTen;
         this.email = email;
@@ -54,11 +55,11 @@ public class NhanVien {
         this.soDienThoai = soDienThoai;
     }
 
-    public String getGioiTinh() {
+    public int getGioiTinh() {
         return gioiTinh;
     }
 
-    public void setGioiTinh(String gioiTinh) {
+    public void setGioiTinh(int gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 
@@ -68,6 +69,10 @@ public class NhanVien {
 
     public void setDiaChi(String diaChi) {
         this.diaChi = diaChi;
+    }
+
+    public NhanVien(String idNhanVien) {
+        this.idNhanVien = idNhanVien;
     }
     
 }

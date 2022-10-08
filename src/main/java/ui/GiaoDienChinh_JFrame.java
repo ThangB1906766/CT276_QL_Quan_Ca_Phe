@@ -4,7 +4,10 @@
  */
 package ui;
 
+import helpers.ChiaSeDuLieu;
+import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JTabbedPane;
 
 /**
  *
@@ -15,6 +18,7 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
     private QuanLyBan_JPanel btn_tool_quanLyBan;
     private QuanLyDoUong_JPanel btn_tool_quanLyDoUong;
     private QuanLyNhanVien_JPanel btn_tool_quanLyNhanVien;
+    private QuanLyTaiKhoanChinh_JPanel btn_tool_quanLyTaiKhoanChinh;
 
     /**
      * Creates new form GiaoDienChinh_JFrame
@@ -23,6 +27,7 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Trang chủ");
+        DangNhapThanhCong();
     }
 
     /**
@@ -35,7 +40,7 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
+        btn_quanLyDatBan = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JToolBar.Separator();
         btn_quanLyDoUong = new javax.swing.JButton();
         jSeparator7 = new javax.swing.JToolBar.Separator();
@@ -43,7 +48,17 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
         jSeparator8 = new javax.swing.JToolBar.Separator();
         btn_quanLyNhanVien = new javax.swing.JButton();
         jSeparator9 = new javax.swing.JToolBar.Separator();
+        btn_quanLyTaiKhoan = new javax.swing.JButton();
+        jSeparator10 = new javax.swing.JToolBar.Separator();
         btn_dangXuat = new javax.swing.JButton();
+        jSeparator11 = new javax.swing.JToolBar.Separator();
+        btn_dongTab = new javax.swing.JButton();
+        jSeparator12 = new javax.swing.JToolBar.Separator();
+        jPanel1 = new javax.swing.JPanel();
+        lbl_nguoiDung = new javax.swing.JLabel();
+        lbl_vaiTro = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         tabp_giaoDienChinh = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -67,12 +82,17 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
 
         jToolBar1.setRollover(true);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-restaurant-menu-50.png"))); // NOI18N
-        jButton1.setText("Quản lý đặt bàn");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton1);
+        btn_quanLyDatBan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-restaurant-menu-50.png"))); // NOI18N
+        btn_quanLyDatBan.setText("Quản lý bán hàng");
+        btn_quanLyDatBan.setFocusable(false);
+        btn_quanLyDatBan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_quanLyDatBan.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_quanLyDatBan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_quanLyDatBanActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btn_quanLyDatBan);
         jToolBar1.add(jSeparator6);
 
         btn_quanLyDoUong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-coffee-to-go-50.png"))); // NOI18N
@@ -114,6 +134,19 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
         jToolBar1.add(btn_quanLyNhanVien);
         jToolBar1.add(jSeparator9);
 
+        btn_quanLyTaiKhoan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Admin_50px.png"))); // NOI18N
+        btn_quanLyTaiKhoan.setText("Quản lý tài khoản");
+        btn_quanLyTaiKhoan.setFocusable(false);
+        btn_quanLyTaiKhoan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_quanLyTaiKhoan.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_quanLyTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_quanLyTaiKhoanActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btn_quanLyTaiKhoan);
+        jToolBar1.add(jSeparator10);
+
         btn_dangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logout-icon-48.png"))); // NOI18N
         btn_dangXuat.setText("Đăng xuất");
         btn_dangXuat.setFocusable(false);
@@ -125,6 +158,61 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(btn_dangXuat);
+        jToolBar1.add(jSeparator11);
+
+        btn_dongTab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Actions-edit-delete-icon-48.png"))); // NOI18N
+        btn_dongTab.setText("Đóng All");
+        btn_dongTab.setFocusable(false);
+        btn_dongTab.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_dongTab.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_dongTab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_dongTabActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btn_dongTab);
+        jToolBar1.add(jSeparator12);
+
+        jLabel1.setText("Người dùng:");
+
+        jLabel2.setText("Vai trò:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbl_nguoiDung, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_vaiTro, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(70, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(lbl_nguoiDung, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel2)
+                        .addContainerGap(31, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_vaiTro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+
+        jToolBar1.add(jPanel1);
 
         jMenu1.setText("Hệ thống");
 
@@ -196,7 +284,7 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 782, Short.MAX_VALUE)
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tabp_giaoDienChinh))
                 .addContainerGap())
         );
@@ -258,18 +346,74 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
         }
         this.setVisible(false);
         dangnhap.setVisible(true);
+        // XoaTabbedPane();
+        DangNhapThanhCong();
     }//GEN-LAST:event_btn_dangXuatActionPerformed
     /*
         Ngày 23/09/2022 xư lý hiển thị QuanLyNhanVien_JPanel
-    */
+     */
     private void btn_quanLyNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_quanLyNhanVienActionPerformed
-        if(btn_tool_quanLyNhanVien==null){
+        if (btn_tool_quanLyNhanVien == null) {
             btn_tool_quanLyNhanVien = new QuanLyNhanVien_JPanel();
             tabp_giaoDienChinh.addTab("Quản lý nhân viên", btn_tool_quanLyNhanVien);
         }
         tabp_giaoDienChinh.setSelectedComponent(btn_tool_quanLyNhanVien);
     }//GEN-LAST:event_btn_quanLyNhanVienActionPerformed
+    /*
+        Ngày 24/9/2022 Xử lý quản lý tài khoản
+     */
+    private void btn_quanLyTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_quanLyTaiKhoanActionPerformed
+        if (btn_tool_quanLyTaiKhoanChinh == null) {
+            btn_tool_quanLyTaiKhoanChinh = new QuanLyTaiKhoanChinh_JPanel();
+            tabp_giaoDienChinh.addTab("Quản lý tài khoản", btn_tool_quanLyTaiKhoanChinh);
+        }
 
+        tabp_giaoDienChinh.setSelectedComponent(btn_tool_quanLyTaiKhoanChinh);
+    }//GEN-LAST:event_btn_quanLyTaiKhoanActionPerformed
+
+    private void btn_dongTabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dongTabActionPerformed
+        XoaTabbedPane();
+    }//GEN-LAST:event_btn_dongTabActionPerformed
+    private QuanLyBanHang_JPanel btn_tool_quanlyBanHang;
+    private void btn_quanLyDatBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_quanLyDatBanActionPerformed
+        // TODO add your handling code here:
+        if(btn_tool_quanlyBanHang == null){
+            btn_tool_quanlyBanHang = new QuanLyBanHang_JPanel();
+            tabp_giaoDienChinh.addTab("Quản lý bán hàng", btn_tool_quanlyBanHang);
+        }
+        tabp_giaoDienChinh.setSelectedComponent(btn_tool_quanlyBanHang);
+    }//GEN-LAST:event_btn_quanLyDatBanActionPerformed
+    /*
+    Xóa all trong tabbed pane
+     */
+    public void XoaTabbedPane() {
+
+        //tabp_giaoDienChinh.remove(btn_tool_quanLyTaiKhoanChinh);
+        tabp_giaoDienChinh.removeAll();
+        btn_tool_quanLyTaiKhoanChinh = null;
+        btn_tool_quanLyBan = null;
+        btn_tool_quanLyDoUong = null;
+        btn_tool_quanLyNhanVien = null;
+        btn_tool_quanlyBanHang = null;
+    }
+    private void DangNhapThanhCong(){
+        lbl_nguoiDung.setText(ChiaSeDuLieu.nguoiDangNhap.getTenDangNhap());
+        lbl_vaiTro.setText(ChiaSeDuLieu.nguoiDangNhap.getVaiTro());
+        
+        if(ChiaSeDuLieu.nguoiDangNhap.getVaiTro().equals("Quản lý")){
+            btn_quanLyNhanVien.setEnabled(true);
+            btn_quanLyTaiKhoan.setEnabled(true);
+            btn_quanLyBan.setEnabled(false);
+            btn_quanLyDoUong.setEnabled(false);
+            btn_quanLyDatBan.setEnabled(false);
+        }else if(ChiaSeDuLieu.nguoiDangNhap.getVaiTro().equals("Nhân viên")){
+            btn_quanLyNhanVien.setEnabled(false);
+            btn_quanLyTaiKhoan.setEnabled(false);
+            btn_quanLyBan.setEnabled(true);
+            btn_quanLyDoUong.setEnabled(true);
+            btn_quanLyDatBan.setEnabled(true);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -304,13 +448,19 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
             }
         });
     }
+  
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_dangXuat;
+    private javax.swing.JButton btn_dongTab;
     private javax.swing.JButton btn_quanLyBan;
+    private javax.swing.JButton btn_quanLyDatBan;
     private javax.swing.JButton btn_quanLyDoUong;
     private javax.swing.JButton btn_quanLyNhanVien;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_quanLyTaiKhoan;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -321,7 +471,11 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator10;
+    private javax.swing.JToolBar.Separator jSeparator11;
+    private javax.swing.JToolBar.Separator jSeparator12;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
@@ -331,8 +485,19 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator8;
     private javax.swing.JToolBar.Separator jSeparator9;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JLabel lbl_nguoiDung;
+    private javax.swing.JLabel lbl_vaiTro;
     private javax.swing.JMenuItem menu_gioiThieu;
     private javax.swing.JMenuItem mnu_thoat;
     private javax.swing.JTabbedPane tabp_giaoDienChinh;
     // End of variables declaration//GEN-END:variables
+
+    public JTabbedPane getTabp_giaoDienChinh() {
+        return tabp_giaoDienChinh;
+    }
+
+    public void setTabp_giaoDienChinh(JTabbedPane tabp_giaoDienChinh) {
+        this.tabp_giaoDienChinh = tabp_giaoDienChinh;
+    }
+
 }

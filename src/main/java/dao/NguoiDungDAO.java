@@ -33,8 +33,7 @@ public class NguoiDungDAO implements DAOinterface<NguoiDung> {
         String sql = "select tenDangNhap, matKhau, vaiTro from NguoiDung "
                 + " where tenDangNhap=? and matKhau = ?";
         try (
-                Connection con = DatabaseHelper.openConnection();  
-                PreparedStatement pstmt = con.prepareStatement(sql);) {
+                 Connection con = DatabaseHelper.openConnection();  PreparedStatement pstmt = con.prepareStatement(sql);) {
             pstmt.setString(1, tenDangNhap);
             pstmt.setString(2, matKhau);
 
@@ -50,36 +49,39 @@ public class NguoiDungDAO implements DAOinterface<NguoiDung> {
         return null;
     }
 
-
     @Override
     public int Insert(NguoiDung t) {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int ketQua = 0;
         try {
             // Bước 1 Tạo kết nối 
             Connection con = DatabaseHelper.openConnection();
             // Bước 2 Tạo đối tượng statement
-            Statement st = con.createStatement();
-            // Bước 3 Thực thi lệnh sql
-               String sql = "INSERT INTO NguoiDung (tenDangNhap, matKhau)"+
-                            " VALUES ('"+t.getTenDangNhap()+"', '"+t.getMatKhau()+"')";
-               
-               int ketQua = st.executeUpdate(sql);
-               
+            String sql = "INSERT INTO NguoiDung (tenDangNhap, matKhau)"
+                    + " VALUES (?, ?)";
+
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, t.getTenDangNhap());
+            pst.setString(2, t.getMatKhau());
+            // Bước 3 Thực thi lệnh sql   
+            ketQua = pst.executeUpdate();
+
             // Bước 4
-            System.out.println("Ban da thuc thi " +sql);
-            System.out.println("Có " +ketQua+ " bi thay doi!!");
-            
+            System.out.println("Ban da thuc thi " + sql);
+            System.out.println("Có " + ketQua + " bi thay doi!!");
+
             // Bước 5 Ngắt kết nối
             con.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-       return 0;
+        return ketQua; // trả về số dòng bị thay đổi
     }
-    
-    public static NguoiDungDAO getInstance(){
+
+    public static NguoiDungDAO getInstance() {
         return new NguoiDungDAO();
     }
+
     @Override
     public int Update(NguoiDung t) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -93,6 +95,7 @@ public class NguoiDungDAO implements DAOinterface<NguoiDung> {
     @Override
     public NguoiDung selectById(NguoiDung t) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       
     }
 
     @Override

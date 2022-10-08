@@ -133,6 +133,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_tenDangNhap">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="admin2"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btn_dangNhap">
           <Properties>
@@ -160,6 +163,9 @@
         <Component class="javax.swing.JSeparator" name="jSeparator1">
         </Component>
         <Component class="javax.swing.JPasswordField" name="txt_matKhau">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="123"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_matKhauActionPerformed"/>
           </Events>

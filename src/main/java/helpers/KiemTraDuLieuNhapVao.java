@@ -6,6 +6,7 @@ package helpers;
 
 import java.awt.Color;
 import javax.swing.JPasswordField;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -44,6 +45,17 @@ public class KiemTraDuLieuNhapVao {
             filed.requestFocus(); // Trỏ về trường đang lỗi
         } else {
             filed.setBackground(Color.WHITE);
+        }
+    }
+
+    public static void KiemTraRong(JTextArea txt_diaChi, StringBuilder sb, String địa_chỉ_nhân_viên_không_được_để_trống) {
+       // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+     if (txt_diaChi.getText().equals("")) {
+            sb.append(địa_chỉ_nhân_viên_không_được_để_trống).append("\n");
+            txt_diaChi.setBackground(Color.red);
+            txt_diaChi.requestFocus(); // Trỏ về trường đang lỗi
+        } else {
+            txt_diaChi.setBackground(Color.WHITE);
         }
     }
 }

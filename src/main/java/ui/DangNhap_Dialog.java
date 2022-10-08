@@ -56,6 +56,8 @@ public class DangNhap_Dialog extends javax.swing.JDialog {
 
         jLabel3.setText("Mật khẩu");
 
+        txt_tenDangNhap.setText("admin2");
+
         btn_dangNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Login-icon-16.png"))); // NOI18N
         btn_dangNhap.setText("Đăng nhập");
         btn_dangNhap.addActionListener(new java.awt.event.ActionListener() {
@@ -73,6 +75,7 @@ public class DangNhap_Dialog extends javax.swing.JDialog {
             }
         });
 
+        txt_matKhau.setText("123");
         txt_matKhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_matKhauActionPerformed(evt);
@@ -172,53 +175,38 @@ public class DangNhap_Dialog extends javax.swing.JDialog {
      */
     public GiaoDienChinh_JFrame gdc;
     private void btn_dangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dangNhapActionPerformed
-
         // Kiểm tra nhập liệu
         StringBuilder sb = new StringBuilder();
         // Kiêm tra tài khoản rỗng ?
         KiemTraDuLieuNhapVao.KiemTraRong(txt_tenDangNhap, sb, "Tên đăng nhập không được để trống");
         KiemTraDuLieuNhapVao.KiemTraMatKhauRong(txt_matKhau, sb, "Mật khẩu không được để trống");
-
         // Kiểm tra kích thước đối tương sb 
         if (sb.length() > 0) { // Có thông báo trong đối tương sb
             ThongBao.ThongBaoLoi(this, sb.toString(), "Lỗi");
             return; // Kết thúc phương thức ThongBaoLoi()
         }
-
         // Khai báo đối tượng NguoiDung + NguoiDungDAO
         NguoiDungDAO ndDao = new NguoiDungDAO();
         try {
             NguoiDung nd = ndDao.KiemTraDangNhap(txt_tenDangNhap.getText(), new String(txt_matKhau.getPassword()));
+
             if (nd == null) {
                 ThongBao.ThongBaoLoi(this, "Sai tên đăng nhập hoặc mật khẩu", "Lỗi");
             } else { // Đăng nhập thành công -> đóng lại
                 ChiaSeDuLieu.nguoiDangNhap = nd; // Thể hiện có liên kết giữ form đằng nhập và giao diện chính
                 //this.dispose();
-                
+
                 if (gdc == null) {
                     gdc = new GiaoDienChinh_JFrame();
                 }
                 this.dispose();
                 gdc.setVisible(true);
-                gdc.dangnhap=this;
+                gdc.dangnhap = this;
             }
         } catch (Exception e) {
             e.printStackTrace();
             ThongBao.ThongBaoLoi(this, e.getMessage(), "Lỗi ngoại lệ");
         }
-
-//        if (txt_tenDangNhap.getText().equals("admin") && txt_matKhau.getText().equals("123")) {
-//
-//            if (gdc == null) {
-//                gdc = new GiaoDienChinh_JFrame();
-//            }
-//                this.dispose();
-//                gdc.setVisible(true);
-//                gdc.dangnhap=this;
-//        }else{
-//            JOptionPane.showMessageDialog(this, "Sai tên đăng nhập hoặc mật khẩu", "Thông báo", JOptionPane.WARNING_MESSAGE);
-//        }
-
     }//GEN-LAST:event_btn_dangNhapActionPerformed
     /*
         Ngày 22/09/2022 tạo ham get set của txt_matKhau để xóa mật khẩu khi đăng xuất 
@@ -238,7 +226,7 @@ public class DangNhap_Dialog extends javax.swing.JDialog {
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
         NguoiDung nd = new NguoiDung(txt_tenDangNhap.getText(), new String(txt_matKhau.getPassword()));
-        
+
         NguoiDungDAO.getInstance().Insert(nd);
     }//GEN-LAST:event_btn_themActionPerformed
 
