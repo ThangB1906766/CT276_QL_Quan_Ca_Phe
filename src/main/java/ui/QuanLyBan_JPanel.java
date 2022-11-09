@@ -306,6 +306,7 @@ public class QuanLyBan_JPanel extends javax.swing.JPanel {
                 if (ban != null) { // Lấy dữ liệu lên khi có chọn 1 dòng có tồn taij mã nhân viên
                     txt_ghiChu.setText(ban.getGhiChu());
                     txt_soBan.setText(ban.getTenBan());
+                    TaiDuLieuLenBang();
                 }
             }
         } catch (Exception e) {

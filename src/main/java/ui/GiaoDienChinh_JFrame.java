@@ -7,6 +7,7 @@ package ui;
 import helpers.ChiaSeDuLieu;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 
 /**
@@ -19,7 +20,7 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
     private QuanLyDoUong_JPanel btn_tool_quanLyDoUong;
     private QuanLyNhanVien_JPanel btn_tool_quanLyNhanVien;
     private QuanLyTaiKhoanChinh_JPanel btn_tool_quanLyTaiKhoanChinh;
-
+    private ThongKeHoaDon_JPanel btn_tool_thongKeHoaDon;
     /**
      * Creates new form GiaoDienChinh_JFrame
      */
@@ -30,6 +31,14 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
         DangNhapThanhCong();
     }
 
+    public void setLbl_nguoiDung(JLabel lbl_nguoiDung) {
+        this.lbl_nguoiDung = lbl_nguoiDung;
+    }
+
+    public JLabel getLbl_nguoiDung() {
+        return lbl_nguoiDung;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,6 +55,8 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
         jSeparator7 = new javax.swing.JToolBar.Separator();
         btn_quanLyBan = new javax.swing.JButton();
         jSeparator8 = new javax.swing.JToolBar.Separator();
+        btn_thongKe = new javax.swing.JButton();
+        jSeparator13 = new javax.swing.JToolBar.Separator();
         btn_quanLyNhanVien = new javax.swing.JButton();
         jSeparator9 = new javax.swing.JToolBar.Separator();
         btn_quanLyTaiKhoan = new javax.swing.JButton();
@@ -121,6 +132,16 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
         jToolBar1.add(btn_quanLyBan);
         jToolBar1.add(jSeparator8);
 
+        btn_thongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Cash in Hand_50px.png"))); // NOI18N
+        btn_thongKe.setText("Thống kê");
+        btn_thongKe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_thongKeActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btn_thongKe);
+        jToolBar1.add(jSeparator13);
+
         btn_quanLyNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/icons8-user-50.png"))); // NOI18N
         btn_quanLyNhanVien.setText("Quản lý nhân viên");
         btn_quanLyNhanVien.setFocusable(false);
@@ -182,7 +203,7 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(143, 143, 143)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -192,7 +213,7 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbl_vaiTro, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,7 +305,7 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1113, Short.MAX_VALUE)
                     .addComponent(tabp_giaoDienChinh))
                 .addContainerGap())
         );
@@ -339,11 +360,12 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
     public DangNhap_Dialog dangnhap;
 
     private void btn_dangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dangXuatActionPerformed
+        
         dangnhap.getTxt_matKhau().setText("");
         if (dangnhap == null) {
             dangnhap = new DangNhap_Dialog(this, true);
-
         }
+        
         this.setVisible(false);
         dangnhap.setVisible(true);
         // XoaTabbedPane();
@@ -383,6 +405,15 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
         }
         tabp_giaoDienChinh.setSelectedComponent(btn_tool_quanlyBanHang);
     }//GEN-LAST:event_btn_quanLyDatBanActionPerformed
+
+    private void btn_thongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thongKeActionPerformed
+        // TODO add your handling code here:
+        if(btn_tool_thongKeHoaDon == null){
+            btn_tool_thongKeHoaDon = new ThongKeHoaDon_JPanel();
+            tabp_giaoDienChinh.addTab("Thống kê", btn_tool_thongKeHoaDon);
+        }
+        tabp_giaoDienChinh.setSelectedComponent(btn_tool_thongKeHoaDon);
+    }//GEN-LAST:event_btn_thongKeActionPerformed
     /*
     Xóa all trong tabbed pane
      */
@@ -395,6 +426,7 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
         btn_tool_quanLyDoUong = null;
         btn_tool_quanLyNhanVien = null;
         btn_tool_quanlyBanHang = null;
+        btn_tool_thongKeHoaDon=null;
     }
     private void DangNhapThanhCong(){
         lbl_nguoiDung.setText(ChiaSeDuLieu.nguoiDangNhap.getTenDangNhap());
@@ -459,6 +491,7 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
     private javax.swing.JButton btn_quanLyDoUong;
     private javax.swing.JButton btn_quanLyNhanVien;
     private javax.swing.JButton btn_quanLyTaiKhoan;
+    private javax.swing.JButton btn_thongKe;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
@@ -476,6 +509,7 @@ public class GiaoDienChinh_JFrame extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator10;
     private javax.swing.JToolBar.Separator jSeparator11;
     private javax.swing.JToolBar.Separator jSeparator12;
+    private javax.swing.JToolBar.Separator jSeparator13;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;

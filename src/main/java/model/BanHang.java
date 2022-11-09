@@ -33,6 +33,12 @@ public class BanHang {
         this.soLuong = soLuong;
     }
 
+    public BanHang(String tenDoDung, int soLuong, float giaDoDung) {
+        this.tenDoDung = tenDoDung;
+        this.giaDoDung = giaDoDung;
+        this.soLuong = soLuong;
+    }
+    
     public String getTenBan() {
         return tenBan;
     }
@@ -73,4 +79,11 @@ public class BanHang {
         this.soLuong = soLuong;
     }
     
+    public float ThanhTien(){
+        return (float)soLuong*giaDoDung;
+    }
+    
+    public String Xuat(){
+        return String.format("%-25s %d %f %f\n", tenDoDung , soLuong, giaDoDung, ThanhTien());
+    }
 }

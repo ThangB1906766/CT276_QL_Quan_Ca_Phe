@@ -29,11 +29,13 @@ public class BanHangDAO implements DAOinterface<BanHang> {
             String sql = "INSERT INTO BanHang(tenBan ,tenDoDung ,soLuong ,giaDoDung ,thanhTien) "
                     + " VALUES (?, ?, ?, ?, ?)";
             PreparedStatement pst = con.prepareStatement(sql);
+            
             pst.setString(1, t.getTenBan());
             pst.setString(2, t.getTenDoDung());
             pst.setInt(3, t.getSoLuong());
             pst.setFloat(4, t.getGiaDoDung());
             pst.setFloat(5, t.getThanhTien());
+           
 
             // B3: Thực thi sql
             ketQua = pst.executeUpdate();
