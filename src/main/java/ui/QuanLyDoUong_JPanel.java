@@ -9,6 +9,7 @@ import dao.DoDungDAO;
 import dao.NhanVienDAO;
 import helpers.KiemTraDuLieuNhapVao;
 import helpers.ThongBao;
+import java.awt.Color;
 import java.sql.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -16,6 +17,10 @@ import javax.swing.table.DefaultTableModel;
 import model.Ban;
 import model.DoDung;
 import model.NhanVien;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import javax.swing.JTextField;
 
 /**
  *
@@ -251,7 +256,25 @@ public class QuanLyDoUong_JPanel extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+    /*
+    Ngày 05/12/2022 Kiểm tra ngày nhập vào đúng định dạng
+    
+     */
+    public boolean checkDateImport(String date) {
+        if (!date.matches("([0-9]{4})/([0-9]{2})/([0-9]{2})")) {
+            return false;
+        }
+        Date presentDate = new Date(ERROR, WIDTH, WIDTH);
 
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        try {
+            Date inputDate = (Date) formatter.parse(date);
+            return inputDate.after(presentDate);
+        } catch (ParseException ex) {
+            //Logger.getLogger(QuanLyDoUong_JPanel.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
     private void btn_taoMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_taoMoiActionPerformed
         // TODO add your handling code here:
         txt_idDoDung.setText("");
@@ -269,6 +292,13 @@ public class QuanLyDoUong_JPanel extends javax.swing.JPanel {
         KiemTraDuLieuNhapVao.KiemTraRong(txt_giaDoDung, sb, "Giá bán đồ dùng không được để trống");
         KiemTraDuLieuNhapVao.KiemTraRong(txt_ngayKM, sb, "Ngày khuyển mãi không được để trống");
         KiemTraDuLieuNhapVao.KiemTraRong(txt_ngayKT, sb, "Ngày kết thúc không được để trống");
+
+        if (!checkDateImport(txt_ngayKM)) {
+            sb.append("Ngày nhập hàng phải theo định dạng DD/MM/YYYY! và lớn hơn ngày hiện tại!\n");
+            txt_ngayKM.setBackground(Color.yellow);
+        } else {
+            txt_ngayKM.setBackground(Color.white);
+        }
 
         if (sb.length() > 0) {
             ThongBao.ThongBaoLoi(giaoDienChinh, sb.toString(), "Lỗi sb.length() > 0");
@@ -466,4 +496,8 @@ public class QuanLyDoUong_JPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txt_ngayKT;
     private javax.swing.JTextField txt_tenDoDung;
     // End of variables declaration//GEN-END:variables
+
+    private boolean checkDateImport(JTextField txt_ngayKM) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
